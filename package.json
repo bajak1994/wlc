@@ -1,0 +1,38 @@
+{
+  "name": "wlc-form",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "stylelint-config-sass-guidelines": "^10.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-webpack-plugin": "^4.0.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-webpack-plugin": "^4.1.1",
+    "terser-webpack-plugin": "^5.3.7",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "lint:wpcs": "phpcs --standard=WordPress includes/"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
