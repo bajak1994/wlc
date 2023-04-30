@@ -104,6 +104,9 @@
     }
 
     onError (xhr, status, error) {
+      console.log(xhr)
+      console.log(status)
+      console.log(error)
       this.response.html(error)
 
       // Re-enable the submit button

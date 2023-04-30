@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "lint:wpcs": "phpcs --standard=WordPress includes/"
+    "lint:wpcs": "phpcs --standard=phpcs.xml includes/"
   },
   "author": "",
   "license": "ISC",

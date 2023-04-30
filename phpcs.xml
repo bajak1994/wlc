@@ -22,6 +22,7 @@
 
     <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
     <exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
+    <exclude name="WordPress.DB.DirectDatabaseQuery" />
   </rule>
 
 </ruleset>

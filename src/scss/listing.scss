@@ -1,0 +1,88 @@
+.wlclisting {
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+
+  // Style table header
+  th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+  // Style table rows
+  &__entry {
+    background-color: #fff;
+    border: 1px solid #ddd;
+
+    // Alternate row colors
+    &:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    // Hover effect on rows
+    &:hover {
+      background-color: #e6e6e6;
+      cursor: pointer;
+    }
+  }
+
+  // Style table cells
+  td {
+    border: 0;
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  // Pagination
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    &-page {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+
+
+      &.current {
+        background-color: #333;
+        color: #fff;
+      }
+
+      &:hover:not(.current) {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+
+  // Entry details
+  &__entry-details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: none;
+  }
+
+  &__entry-detail {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    span {
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+}

@@ -7,6 +7,8 @@ Version: 1.0
 Author: Mateusz Bajak
 */
 
+use App\WLCFORM;
+
 define( 'WLCFORM_TEXT_DOMAIN', 'wlcform' );
 define( 'WLCFORM_LEADS_TABLE', 'wlcform_leads' );
 define( 'WLCFORM_PLUGIN_DIR', untrailingslashit( dirname( __FILE__ ) ) );
@@ -14,7 +16,8 @@ define( 'WLCFORM_PLUGIN_INCLUDES_DIR', WLCFORM_PLUGIN_DIR . DIRECTORY_SEPARATOR 
 define( 'WLCFORM_PLUGIN_TEMPLATES_DIR', WLCFORM_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'templates' );
 
 require_once( WLCFORM_PLUGIN_INCLUDES_DIR . DIRECTORY_SEPARATOR . 'helpers.php' );
-require_once( WLCFORM_PLUGIN_INCLUDES_DIR . DIRECTORY_SEPARATOR . 'WLCFORM.php' );
+require_once( WLCFORM_PLUGIN_INCLUDES_DIR . DIRECTORY_SEPARATOR . 'class-wlcform.php' );
+require_once( WLCFORM_PLUGIN_INCLUDES_DIR . DIRECTORY_SEPARATOR . 'class-wlclisting.php' );
 
 /**
  * Enqueue assets
@@ -22,15 +25,19 @@ require_once( WLCFORM_PLUGIN_INCLUDES_DIR . DIRECTORY_SEPARATOR . 'WLCFORM.php' 
 function wlcform_assets() {
   wp_enqueue_style( 'wlcform-styles', plugins_url( '/dist/main.css', __FILE__ ) );
   wp_enqueue_script( 'wlcform-script', plugins_url( '/dist/main.js', __FILE__ ), array( 'jquery' ), '1.0', true );
-  wp_localize_script( 'wlcform-script', 'wclform', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ) );
+  wp_localize_script( 'wlcform-script', 'wclform', array(
+    'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+    'listing_nonce' => wp_create_nonce('wlclisting'),
+  ) );
 }
 add_action( 'wp_enqueue_scripts', 'wlcform_assets' );
 
 /**
- * Initialize the WLCForm class.
+ * Initialize necessary classes.
  */
 function wlcform() {
-  $wlcform = new WLCForm();
+  $wlcform = new App\WLCFORM\WLCForm();
+  $wlclisting = new App\WLCFORM\WLCListing();
 }
 add_action( 'plugins_loaded', 'wlcform', 10, 0 );
 
