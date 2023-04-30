@@ -28,7 +28,7 @@ class WLCListing {
 	 */
 	public function render_listing() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return '<p>You are not authorized to view the content of this page.</p>';
+			return '<p>' . __( 'You are not authorized to view the content of this page.', 'wlcform' ) . '</p>';
 		}
 
 		global $wpdb;
@@ -83,7 +83,7 @@ class WLCListing {
 			$content = include_template( 'listing-entry-details', array( 'entry' => $entry ) );
 			wp_send_json_success( $content );
 		} else {
-			wp_send_json_error( 'Invalid entry ID' );
+			wp_send_json_error( __( 'Invalid entry ID', 'wlcform' ) );
 		}
 	}
 
@@ -94,7 +94,7 @@ class WLCListing {
 		check_ajax_referer( 'wlclisting', 'security' );
 
 		if ( ! isset( $_POST['page'] ) || empty( $_POST['page'] ) ) {
-			wp_send_json_error( 'Something went wrong. Please, try again later.' );
+			wp_send_json_error( __( 'Something went wrong. Please, try again later.', 'wlcform' ) );
 		}
 
 		$entries_page = $this->get_entries_page( sanitize_text_field( wp_unslash( $_POST['page'] ) ) );
@@ -102,7 +102,7 @@ class WLCListing {
 		if ( $entries_page ) {
 			wp_send_json_success( $entries_page );
 		} else {
-			wp_send_json_error( 'Something went wrong. Please, try again later.' );
+			wp_send_json_error( __( 'Something went wrong. Please, try again later.', 'wlcform' ) );
 		}
 	}
 
@@ -110,14 +110,14 @@ class WLCListing {
 	 * AJAX handler for retrieving the details of a single listing entry for unauthorized users.
 	 */
 	public function ajax_nopriv_get_entry_details() {
-		wp_send_json_error( 'You are not authorized to view the content of this page.' );
+		wp_send_json_error( __( 'You are not authorized to view the content of this page.', 'wlcform' ) );
 	}
 
 	/**
 	 * AJAX handler for retrieving a list of all listing entries for unauthorized users.
 	 */
 	public function ajax_nopriv_get_entries() {
-		wp_send_json_error( 'You are not authorized to view the content of this page.' );
+		wp_send_json_error( __( 'You are not authorized to view the content of this page.', 'wlcform' ) );
 	}
 
 }

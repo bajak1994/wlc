@@ -46,7 +46,7 @@ class WLCForm {
 	 */
 	public function form_submit() {
 		if ( ! wp_doing_ajax() ) {
-			wp_die( 'This method can only be called via AJAX.' );
+			wp_die( esc_html( __( 'This method can only be called via AJAX.', 'wlcform' ) ) );
 		}
 
 		try {
@@ -57,19 +57,19 @@ class WLCForm {
 			$message    = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
 
 			if ( ! isset( $_POST['nonce'] ) || empty( $_POST['nonce'] ) ) {
-				wp_send_json_error( 'Something went wrong. Please, try again later.' );
+				wp_send_json_error( esc_html( __( 'Something went wrong. Please, try again later.', 'wlcform' ) ) );
 			}
 
 			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'wlcform' ) ) {
-				wp_send_json_error( 'Something went wrong. Please, try again later.' );
+				wp_send_json_error( esc_html( __( 'Something went wrong. Please, try again later.', 'wlcform' ) ) );
 			}
 
 			if ( empty( $first_name ) || empty( $last_name ) || empty( $email ) || empty( $subject ) || empty( $message ) ) {
-				wp_send_json_error( 'All fields are required.' );
+				wp_send_json_error( esc_html( __( 'All fields are required.', 'wlcform' ) ) );
 			}
 
 			if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-				wp_send_json_error( 'Invalid email address.' );
+				wp_send_json_error( esc_html( __( 'Invalid email address.', 'wlcform' ) ) );
 			}
 
 			$feedback_data = array(
@@ -94,15 +94,15 @@ class WLCForm {
 			);
 
 			if ( false === $result ) {
-				wp_send_json_error( 'Something went wrong. Please, try again later.' );
+				wp_send_json_error( esc_html( __( 'Something went wrong. Please, try again later.', 'wlcform' ) ) );
 			} else {
-				wp_send_json_success( 'Thank you for sending us your feedback.' );
+				wp_send_json_success( esc_html( __( 'Thank you for sending us your feedback.', 'wlcform' ) ) );
 			}
 
 			wp_die();
 
 		} catch ( Exception $e ) {
-			wp_send_json_error( 'Something went wrong. Please, try again later.' );
+			wp_send_json_error( esc_html( __( 'Something went wrong. Please, try again later.', 'wlcform' ) ) );
 			wp_die();
 		}
 	}

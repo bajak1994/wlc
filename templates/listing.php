@@ -1,10 +1,10 @@
 <table class="wlclisting">
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Subject</th>
+      <th><?php esc_html_e( 'First Name', 'wlcform' ); ?></th>
+      <th><?php esc_html_e( 'Last Name', 'wlcform' ); ?></th>
+      <th><?php esc_html_e( 'Email', 'wlcform' ); ?></th>
+      <th><?php esc_html_e( 'Subject', 'wlcform' ); ?></th>
     </tr>
   </thead>
   <tbody>
